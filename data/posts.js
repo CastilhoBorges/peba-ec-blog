@@ -42,8 +42,7 @@ const POSTS = [
       { name: "Lucão", goals: 1 },
       { name: "Tales", goals: 1 }
     ],
-    goalkeepers: [],
-    zeroed: []
+    goalkeepers: []
   },
   {
     type: "rodada",
@@ -69,7 +68,6 @@ const POSTS = [
     ],
     goalkeepers: [
       { name: "Marcos", saves: 8 }
-    ],
-    zeroed: ["Guilherme", "Hugo", "Felipe Martins", "João Ferreira Alves", "Tonhão"]
+    ]
   }
 ];

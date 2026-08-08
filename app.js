@@ -46,7 +46,6 @@ function rodadaCardHtml(post, clickable) {
     </div>
     ${rankingListHtml(top)}
     ${post.goalkeepers && post.goalkeepers.length ? `<p class="mini-note">🧤 Goleiro: ${post.goalkeepers.map(g => `${g.name} — ${g.saves} defesas`).join(", ")}</p>` : ""}
-    ${post.zeroed && post.zeroed.length ? `<p class="mini-note">Ficaram no zero: ${post.zeroed.join(", ")}</p>` : ""}
   </article>`;
 }
 
@@ -101,7 +100,6 @@ function renderPost(slug) {
         </div>
         ${rankingListHtml(post.scorers)}
         ${post.goalkeepers && post.goalkeepers.length ? `<p class="mini-note">🧤 Goleiro: ${post.goalkeepers.map(g => `${g.name} — ${g.saves} defesas`).join(", ")}</p>` : ""}
-        ${post.zeroed && post.zeroed.length ? `<p class="mini-note">Ficaram no zero: ${post.zeroed.join(", ")}</p>` : ""}
       </article>
     `;
   } else {
