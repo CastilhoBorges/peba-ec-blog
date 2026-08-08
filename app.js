@@ -1,10 +1,5 @@
 const MEDALHAS = ["🥇", "🥈", "🥉"];
 
-function coleteDot(cor) {
-  const map = { Vermelho: "#C0392B", Amarelo: "#E8B923", Azul: "#3E6EA5" };
-  return map[cor] || "#888";
-}
-
 function computeRanking() {
   const totals = {};
   POSTS.filter(p => p.type === "rodada").forEach(post => {
@@ -55,14 +50,29 @@ function rodadaCardHtml(post, clickable) {
   </article>`;
 }
 
+function coverImgHtml(cover) {
+  return `
+    <picture>
+      ${cover.webp ? `<source srcset="${cover.webp}" type="image/webp">` : ""}
+      <img src="${cover.src}" alt="${cover.alt || ""}" loading="lazy">
+    </picture>`;
+}
+
 function anuncioCardHtml(post, clickable) {
   const preview = post.body[0];
+  const texto = `
+    <div class="anuncio-text">
+      <p>${preview}</p>
+      ${clickable ? `<p class="mini-note">Ler completo →</p>` : ""}
+    </div>`;
+
   return `
   <article class="card ${clickable ? "clickable" : ""}" ${clickable ? `onclick="location.hash='#/post/${post.slug}'"` : ""}>
     <div class="eyebrow">${post.icon || "📣"} Anúncio <span class="sep">·</span> ${post.dateLabel}</div>
     <h2>${post.title}</h2>
-    <p>${preview}</p>
-    ${clickable ? `<p class="mini-note">Ler completo →</p>` : ""}
+    ${post.cover
+      ? `<div class="anuncio-row"><div class="anuncio-thumb">${coverImgHtml(post.cover)}</div>${texto}</div>`
+      : texto}
   </article>`;
 }
 
@@ -99,6 +109,7 @@ function renderPost(slug) {
       <article class="card">
         <div class="eyebrow">${post.icon || "📣"} Anúncio <span class="sep">·</span> ${post.dateLabel}</div>
         <h2>${post.title}</h2>
+        ${post.cover ? `<figure class="post-capa">${coverImgHtml(post.cover)}</figure>` : ""}
         ${post.body.map(p => `<p>${p}</p>`).join("")}
       </article>`;
   }
@@ -110,10 +121,31 @@ function renderPost(slug) {
     </div>`;
 }
 
+function regraCardHtml(regra, numero) {
+  const itens = regra.itens.map(i => `<li>${i}</li>`).join("");
+  const lista = regra.tipo === "letras"
+    ? `<ol class="regra-itens letras">${itens}</ol>`
+    : `<ul class="regra-itens">${itens}</ul>`;
+
+  return `
+    <li class="regra">
+      <div class="regra-head">
+        <span class="num">${String(numero).padStart(2, "0")}</span>
+        <h3>${regra.titulo}</h3>
+      </div>
+      ${regra.intro ? `<p class="regra-intro">${regra.intro}</p>` : ""}
+      ${lista}
+      ${regra.nota ? `<p class="regra-nota">${regra.nota}</p>` : ""}
+    </li>`;
+}
+
 function renderRegras() {
   const formatos = REGRAS.formatos.map(f => `
-    <div class="formato-card">
-      <h3>${f.titulo}</h3>
+    <div class="formato-card ${f.offline ? "offline" : ""}">
+      <div class="formato-head">
+        <h3>${f.titulo}</h3>
+        ${f.offline ? `<span class="badge-offline">Offline no momento</span>` : ""}
+      </div>
       <div class="local">${f.local} — ${f.endereco}</div>
       <div class="formato-grid">
         <div><span class="k">Horário</span><span class="v">${f.horario}</span></div>
@@ -123,16 +155,17 @@ function renderRegras() {
       </div>
     </div>`).join("");
 
-  const coletes = `<div class="coletes-row">${REGRAS.coletes.map(c => `
-    <span class="colete-swatch"><span class="sq" style="background:${c.hex}"></span>${c.cor}</span>`).join("")}</div>`;
+  const regrasRacha = REGRAS.racha.map((r, i) => regraCardHtml(r, i + 1)).join("");
 
   return `
     <div class="wrap">
       <section class="page-section">
         <h2>Formatos do racha</h2>
         ${formatos}
-        <p class="mini-note">Coletes dos times:</p>
-        ${coletes}
+      </section>
+      <section class="page-section">
+        <h2>Regras do racha ⚽</h2>
+        <ol class="regras-lista">${regrasRacha}</ol>
       </section>
       <section class="page-section">
         <h2>Sorteio dos times</h2>

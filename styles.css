@@ -82,17 +82,6 @@ nav.tabs a.active{
 
 main{ padding:34px 0 70px; }
 
-/* ---------- coletes chip ---------- */
-.chip{
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase;
-  padding:3px 9px; border-radius:20px;
-  border:1px solid var(--linha);
-  color:var(--giz-fraco);
-}
-.chip .dot{ width:8px; height:8px; border-radius:50%; }
-
 /* ---------- feed / post cards ---------- */
 .card{
   border:1px solid var(--linha);
@@ -125,6 +114,24 @@ main{ padding:34px 0 70px; }
 
 .card p{ margin:0 0 10px; line-height:1.65; color:rgba(245,243,231,0.88); font-size:0.98rem; }
 .card p:last-child{ margin-bottom:0; }
+
+/* ---------- capa de anúncio ---------- */
+.anuncio-row{ display:flex; align-items:flex-start; gap:16px; }
+.anuncio-row .anuncio-text{ flex:1; min-width:0; }
+.anuncio-thumb{
+  flex:0 0 104px; width:104px; aspect-ratio:1/1;
+  border:1px solid var(--linha); border-radius:4px;
+  overflow:hidden; background:var(--verde-escuro);
+}
+.anuncio-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.post-capa{
+  margin:0 0 18px;
+  max-width:480px;
+  border:1px solid var(--linha); border-radius:6px;
+  overflow:hidden; background:var(--verde-escuro);
+}
+.post-capa img{ width:100%; height:auto; display:block; }
 
 /* scoreboard block inside rodada cards */
 .placar{
@@ -178,22 +185,78 @@ main{ padding:34px 0 70px; }
   margin-bottom:18px;
   background:rgba(245,243,231,0.03);
 }
+.formato-head{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:4px; }
 .formato-card h3{
   font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:0.03em;
-  font-size:1.05rem; margin:0 0 4px;
+  font-size:1.05rem; margin:0;
   color:var(--amarelo);
 }
 .formato-card .local{ font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--giz-fraco); margin-bottom:14px; }
+
+.badge-offline{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase;
+  padding:3px 9px; border-radius:20px;
+  border:1px solid var(--linha);
+  color:var(--giz-fraco);
+}
+.badge-offline::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--vermelho); }
+
+.formato-card.offline{ background:rgba(245,243,231,0.015); }
+.formato-card.offline h3{ color:var(--giz-fraco); }
+.formato-card.offline .local,
+.formato-card.offline .formato-grid{ opacity:0.45; }
+
+/* ---------- regras do racha ---------- */
+.regras-lista{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+.regra{
+  border:1px solid var(--linha);
+  border-radius:6px;
+  padding:18px 20px;
+  background:rgba(245,243,231,0.03);
+}
+.regra-head{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.regra-head .num{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.7rem; font-weight:600; line-height:1;
+  color:var(--verde-escuro); background:var(--amarelo);
+  border-radius:3px; padding:4px 7px;
+}
+.regra-head h3{
+  font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:0.03em;
+  font-size:1rem; margin:0; color:var(--giz);
+}
+.regra-intro{ margin:0 0 10px; font-size:0.95rem; line-height:1.6; color:rgba(245,243,231,0.88); }
+.regra-itens{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.regra-itens li{
+  position:relative; padding-left:16px;
+  font-size:0.95rem; line-height:1.6; color:rgba(245,243,231,0.88);
+}
+.regra-itens li::before{
+  content:""; position:absolute; left:1px; top:0.62em;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--amarelo); opacity:0.65;
+}
+.regra-itens.letras{ list-style:lower-alpha; padding-left:22px; }
+.regra-itens.letras li{ padding-left:2px; }
+.regra-itens.letras li::before{ content:none; }
+.regra-itens.letras li::marker{ font-family:'IBM Plex Mono', monospace; color:var(--amarelo); font-size:0.85rem; }
+.regra strong{ color:var(--amarelo); font-weight:600; }
+.regra a{ color:var(--amarelo); border-bottom:1px solid rgba(232,185,35,0.4); }
+.regra a:hover{ border-bottom-color:var(--amarelo); }
+.regra-nota{
+  margin:12px 0 0; padding-top:10px;
+  border-top:1px dashed var(--linha);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.8rem; line-height:1.55; color:var(--giz-fraco);
+}
 .formato-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; }
 .formato-grid div span.k{
   display:block; font-family:'IBM Plex Mono', monospace; font-size:0.65rem;
   text-transform:uppercase; letter-spacing:0.06em; color:var(--giz-fraco); margin-bottom:2px;
 }
 .formato-grid div span.v{ font-size:0.95rem; }
-
-.coletes-row{ display:flex; gap:10px; margin:20px 0 4px; }
-.colete-swatch{ display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--giz-fraco); }
-.colete-swatch .sq{ width:14px; height:14px; border-radius:3px; }
 
 section.page-section{ margin-bottom:36px; }
 section.page-section h2{
@@ -232,4 +295,7 @@ footer{
   .formato-grid{ grid-template-columns:1fr; }
   .brand h1{ font-size:1.1rem; }
   .card{ padding:18px 18px; }
+  .regra{ padding:16px 16px; }
+  .anuncio-row{ gap:12px; }
+  .anuncio-thumb{ flex-basis:78px; width:78px; }
 }

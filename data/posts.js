@@ -10,6 +10,11 @@ const POSTS = [
     dateLabel: "08 Ago 2026",
     title: "Premiação Artilheiro do Mês — Setembro",
     icon: "🏆",
+    cover: {
+      webp: "assets/premiacao-artilheiro-setembro.webp",
+      src: "assets/premiacao-artilheiro-setembro.jpg",
+      alt: "Cartaz do prêmio Artilheiro do Mês de agosto: 50% OFF nos rachas de setembro. Pague R$30 de uma vez e garanta vaga fixa nos 4 sábados do mês."
+    },
     body: [
       "O artilheiro de agosto vai jogar o mês de setembro com 50% de desconto no racha.",
       "Setembro tem 4 sábados, 1h cada, R$15 por racha — pacote cheio de R$60. O artilheiro paga R$30 de uma vez, antecipado, e essa vaga já fica garantida na lista todo sábado do mês.",
@@ -24,16 +29,18 @@ const POSTS = [
     date: "2026-08-08",
     dateLabel: "08 Ago 2026",
     duration: null,
-    totalGoals: 17,
+    totalGoals: 20,
     scorers: [
       { name: "Isack", goals: 5 },
       { name: "Michell", goals: 4 },
+      { name: "Israel", goals: 2 },
       { name: "Jhon", goals: 2 },
       { name: "Anderson", goals: 2 },
       { name: "Jean", goals: 1 },
       { name: "Hugo", goals: 1 },
       { name: "Artur sem h", goals: 1 },
-      { name: "Lucão", goals: 1 }
+      { name: "Lucão", goals: 1 },
+      { name: "Tales", goals: 1 }
     ],
     goalkeepers: [],
     zeroed: []
