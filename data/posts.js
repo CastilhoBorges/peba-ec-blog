@@ -5,6 +5,21 @@
 const POSTS = [
   {
     type: "anuncio",
+    slug: "nova-regra-faltas-prioridade",
+    date: "2026-08-11",
+    dateLabel: "11 Ago 2026",
+    title: "Nova regra: faltou sem avisar, cai na fila",
+    icon: "⚠️",
+    body: [
+      "Tá rolando um problema que precisa acabar: gente que coloca o nome, paga (ou deixa o cartão) e simplesmente não aparece no dia. O valor até era pago, mas isso não resolvia — a vaga em quadra ficava vazia e quem estava na espera perdia a chance de jogar.",
+      "A partir de agora tem a Regra 2 — \"Faltou no dia? Prioridade rebaixada\". Quem faltar sem avisar entra na prioridade rebaixada: nas próximas listas vai pro fim da fila, e a vaga fica primeiro pra quem tem presença em dia.",
+      "Reincidiu? O rebaixamento aumenta. Voltar a comparecer normalmente vai limpando o seu histórico com o tempo. E deixando claro: o valor daquele dia continua não sendo reembolsado — a penalidade na fila é somada a isso, não substitui.",
+      "A única exceção sem punição é emergência comprovada (saúde ou imprevisto sério), sujeita à aprovação do organizador. Fora disso, a conta é simples: pagar não é o mesmo que comparecer. A vaga é pra ser usada em quadra.",
+      "Confere o texto completo na página de Regras. Bola pra frente e nos vemos no sábado. ⚽"
+    ]
+  },
+  {
+    type: "anuncio",
     slug: "premiacao-artilheiro-setembro",
     date: "2026-08-08",
     dateLabel: "08 Ago 2026",
