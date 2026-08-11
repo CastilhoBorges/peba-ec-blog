@@ -73,7 +73,7 @@ const POSTS = [
       { name: "Augusto", goals: 3 },
       { name: "Arthur", goals: 3 },
       { name: "Tales", goals: 3 },
-      { name: "Andrew Garfield", goals: 2 },
+      { name: "Andre Balada", goals: 2 },
       { name: "Danilo", goals: 1 },
       { name: "Israel", goals: 1 },
       { name: "Sillas", goals: 1 },
