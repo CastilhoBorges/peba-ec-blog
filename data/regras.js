@@ -35,6 +35,17 @@ const REGRAS = {
       ]
     },
     {
+      titulo: "Faltou no dia? Prioridade rebaixada",
+      intro: "Colocar o nome na lista é tirar a vaga de quem também queria jogar. Quem se inscreve, paga (ou coloca o cartão) e não aparece sem justificar é penalizado na fila das próximas semanas.",
+      itens: [
+        "Faltou sem avisar? Você entra na <strong>prioridade rebaixada</strong>: nas próximas listas vai pro fim da fila e a vaga fica primeiro pra quem tem presença em dia.",
+        "Reincidiu? O rebaixamento aumenta. Voltar a comparecer normalmente limpa o histórico com o tempo.",
+        "O valor daquele dia continua não sendo reembolsado — a penalidade na fila é somada a isso, não substitui.",
+        "Única exceção sem punição: <strong>emergência comprovada</strong> (saúde ou imprevisto sério), sujeita à aprovação do organizador."
+      ],
+      nota: "Pagar não é o mesmo que comparecer. A vaga é pra ser usada em quadra."
+    },
+    {
       titulo: "Convidados de fora do grupo",
       itens: [
         "Para inscrever alguém de fora, adicione essa pessoa ao grupo também. Sem exceção.",
@@ -62,7 +73,7 @@ const REGRAS = {
       titulo: "Compromisso de presença",
       itens: [
         "Quem se inscreveu deve pagar, mesmo que não compareça e mesmo que a vaga seja repassada.",
-        "Exceção: situações previstas na Regra 7."
+        "Exceção: situações de reembolso previstas na regra de Reembolso."
       ]
     },
     {
