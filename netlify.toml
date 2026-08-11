@@ -1,0 +1,5 @@
+# Site estático, sem etapa de build. Publica a raiz do repositório.
+# O roteamento é por hash (#/...), servido sempre pelo index.html — sem redirects.
+[build]
+  publish = "."
+  command = ""
