@@ -64,9 +64,10 @@ header.top{
   padding:20px 0 18px;
   position:sticky; top:0; z-index:10;
   background:var(--color-field-dark);
+  overflow:hidden;              /* contem a bola rolando de fora, sem cortar a sombra embaixo dela */
 }
 .top-inner{ display:flex; align-items:center; justify-content:space-between; gap:16px 20px; flex-wrap:wrap; }
-.brand{ position:relative; display:flex; align-items:center; gap:12px; white-space:nowrap; overflow:hidden; }
+.brand{ position:relative; display:flex; align-items:center; gap:7px; white-space:nowrap; }
 .brand h1{
   font-family:var(--font-display);
   text-transform:uppercase;
@@ -76,18 +77,43 @@ header.top{
   margin:0;
   padding-right:0.2em;               /* respiro pra o reveal nunca cortar o ultimo glifo (B) */
   color:var(--color-gold);
-  animation:nome-reveal 1000ms ease-out both;
-}
-.brand .bola{
-  display:inline-block; font-size:1.6rem; line-height:1;
-  position:relative; z-index:1; transform-origin:50% 50%;
-  animation:bola-roll 1000ms cubic-bezier(.15,.75,.3,1) both;
+  animation:nome-reveal 1800ms ease-out both;
 }
 
-/* A bola rola da esquerda p/ a direita descobrindo o nome e para colada no fim do titulo */
+/* Camada externa: translacao (rolagem) + sombra no gramado. Nao gira. */
+.brand .bola{
+  position:relative; display:inline-block; top:2px; z-index:1;
+  animation:bola-roll 1800ms cubic-bezier(.2,.62,.2,1) both;
+}
+/* Camada interna: so a rotacao da bola (a sombra fica de fora, no chao) */
+.brand .bola-ball{
+  display:inline-block; font-size:1.6rem; line-height:1;
+  transform-origin:50% 50%;
+  animation:bola-spin 1800ms cubic-bezier(.2,.62,.2,1) both;
+}
+/* Sombra elíptica de gramado, colada embaixo da bola e acompanhando a rolagem */
+.brand .bola::after{
+  content:""; position:absolute; left:50%; bottom:-2px; z-index:-1;
+  width:1.5em; height:0.34em;
+  background:radial-gradient(ellipse at center, rgba(0,18,4,0.6), rgba(0,18,4,0) 72%);
+  border-radius:50%;
+  animation:sombra-gramado 1800ms cubic-bezier(.2,.62,.2,1) both;
+}
+
+/* Rolagem: da esquerda p/ direita, parando colada no fim do titulo */
 @keyframes bola-roll{
-  0%   { transform:translateX(-280px) rotate(-720deg); }
-  100% { transform:translateX(0) rotate(0); }
+  0%   { transform:translateX(-280px); }
+  100% { transform:translateX(0); }
+}
+/* Rotacao ~3,5 voltas p/ bater com a distancia percorrida (rolagem real) */
+@keyframes bola-spin{
+  0%   { transform:rotate(-1260deg); }
+  100% { transform:rotate(0); }
+}
+@keyframes sombra-gramado{
+  0%   { opacity:0; transform:translateX(-50%) scaleX(0.65); }
+  30%  { opacity:1; }
+  100% { opacity:0.9; transform:translateX(-50%) scaleX(1); }
 }
 @keyframes nome-reveal{
   0%   { clip-path:inset(0 100% 0 0); }
