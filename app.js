@@ -45,7 +45,7 @@ function rodadaCardHtml(post, clickable) {
       <span class="lbl">gols na rodada</span>
     </div>
     ${rankingListHtml(top)}
-    ${post.goalkeepers && post.goalkeepers.length ? `<p class="mini-note">🧤 Goleiro: ${post.goalkeepers.map(g => `${g.name} — ${g.saves} defesas`).join(", ")}</p>` : ""}
+    ${post.goalkeepers && post.goalkeepers.length ? `<p class="mini-note">🧤 Goleiro: ${post.goalkeepers.map(g => g.name).join(", ")}</p>` : ""}
   </article>`;
 }
 
@@ -99,7 +99,7 @@ function renderPost(slug) {
           <span class="lbl">gols na rodada</span>
         </div>
         ${rankingListHtml(post.scorers)}
-        ${post.goalkeepers && post.goalkeepers.length ? `<p class="mini-note">🧤 Goleiro: ${post.goalkeepers.map(g => `${g.name} — ${g.saves} defesas`).join(", ")}</p>` : ""}
+        ${post.goalkeepers && post.goalkeepers.length ? `<p class="mini-note">🧤 Goleiro: ${post.goalkeepers.map(g => g.name).join(", ")}</p>` : ""}
       </article>
     `;
   } else {
@@ -185,7 +185,6 @@ function renderRegras() {
 
 function renderArtilharia() {
   const ranking = computeRanking();
-  const golKeepers = computeGoalkeepers();
   const rows = ranking.map((r, i) => `
     <li class="${i === 0 ? "top1" : ""}">
       <span class="pos">${MEDALHAS[i] || (i + 1)}</span>
@@ -193,22 +192,14 @@ function renderArtilharia() {
       <span class="goals">${r.goals} ⚽</span>
     </li>`).join("");
 
-  const gkRows = golKeepers.map((g, i) => `
-    <li class="${i === 0 ? "top1" : ""}">
-      <span class="pos">${MEDALHAS[i] || (i + 1)}</span>
-      <span class="name">${g.name}</span>
-      <span class="goals">${g.saves} 🧤</span>
-    </li>`).join("");
-
+  // Ranking de defesas dos goleiros temporariamente desativado.
+  // Os dados (post.goalkeepers) e computeGoalkeepers() seguem no lugar —
+  // para reativar, restaure a seção "Melhores goleiros (defesas)" aqui.
   return `
     <div class="wrap">
       <section class="page-section">
         <h2>Artilharia geral</h2>
         ${ranking.length ? `<ul class="rank-full">${rows}</ul>` : `<p class="empty">Sem gols registrados ainda.</p>`}
-      </section>
-      <section class="page-section">
-        <h2>Melhores goleiros (defesas)</h2>
-        ${golKeepers.length ? `<ul class="rank-full">${gkRows}</ul>` : `<p class="empty">Sem defesas registradas ainda.</p>`}
       </section>
     </div>`;
 }
