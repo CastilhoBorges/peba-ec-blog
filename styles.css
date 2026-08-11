@@ -67,7 +67,11 @@ header.top{
 }
 .top-inner{ display:flex; align-items:center; justify-content:space-between; gap:16px 20px; flex-wrap:wrap; }
 .brand{ display:flex; align-items:center; gap:12px; }
-.brand .bola{ font-size:1.6rem; line-height:1; }
+.brand .bola{
+  display:inline-block; font-size:1.6rem; line-height:1;
+  transform-origin:50% 50%;
+  animation:bola-roll 1000ms cubic-bezier(.15,.75,.3,1) both;
+}
 .brand h1{
   font-family:var(--font-display);
   text-transform:uppercase;
@@ -76,16 +80,18 @@ header.top{
   letter-spacing:0;
   margin:0;
   color:var(--color-gold);
+  animation:nome-reveal 850ms steps(24, end) 260ms both;
 }
-.brand small{
-  display:block;
-  font-family:var(--font-body);
-  font-size:1rem;
-  letter-spacing:0.02em;
-  color:var(--color-paper);
-  opacity:0.75;
-  text-transform:uppercase;
-  margin-top:3px;
+
+/* A bola rola pra dentro e vai "descobrindo" o nome (wipe da esquerda p/ direita) */
+@keyframes bola-roll{
+  0%   { transform:translateX(-56px) rotate(-540deg); opacity:0; }
+  25%  { opacity:1; }
+  100% { transform:translateX(0) rotate(0); opacity:1; }
+}
+@keyframes nome-reveal{
+  0%   { clip-path:inset(0 100% 0 0); }
+  100% { clip-path:inset(0 0 0 0); }
 }
 nav.tabs{ display:flex; gap:8px; flex-wrap:wrap; }
 nav.tabs a{
@@ -384,7 +390,6 @@ footer{
   body{ font-size:19px; }
   .formato-grid{ grid-template-columns:1fr; }
   .brand h1{ font-size:0.72rem; }
-  .brand small{ font-size:0.9rem; }
   .card{ padding:18px 16px; }
   .regra{ padding:16px; }
   .anuncio-row{ gap:12px; }
