@@ -1,4 +1,9 @@
 const REGRAS = {
+  // Quando a lista da semana é solta no grupo. Vira um label destacado no topo da página Regras.
+  listaSemanal: {
+    quando: "Toda segunda, 12h",
+    nota: "A lista da semana é solta no grupo nesse horário. Fique atento pra garantir sua vaga."
+  },
   formatos: [
     {
       titulo: "Society — Fim de semana",

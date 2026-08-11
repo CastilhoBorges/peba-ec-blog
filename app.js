@@ -155,8 +155,19 @@ function renderRegras() {
 
   const regrasRacha = REGRAS.racha.map((r, i) => regraCardHtml(r, i + 1)).join("");
 
+  const lista = REGRAS.listaSemanal;
+  const listaLabel = lista ? `
+    <div class="lista-drop">
+      <span class="lista-drop-badge">🗓️ Lista da semana</span>
+      <div class="lista-drop-body">
+        <strong>${lista.quando}</strong>
+        ${lista.nota ? `<span>${lista.nota}</span>` : ""}
+      </div>
+    </div>` : "";
+
   return `
     <div class="wrap">
+      ${listaLabel}
       <section class="page-section">
         <h2>Formatos do racha</h2>
         ${formatos}

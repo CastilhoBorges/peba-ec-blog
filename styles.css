@@ -178,6 +178,27 @@ main{ padding:34px 0 70px; }
 .back-link:hover{ color:var(--amarelo); }
 
 /* ---------- regras page ---------- */
+.lista-drop{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  border:1px solid var(--linha); border-left:3px solid var(--amarelo);
+  border-radius:6px; padding:16px 20px; margin-bottom:28px;
+  background:rgba(232,185,35,0.05);
+}
+.lista-drop-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;
+  padding:5px 10px; border-radius:20px;
+  border:1px solid rgba(232,185,35,0.4); color:var(--amarelo);
+  white-space:nowrap;
+}
+.lista-drop-body{ display:flex; flex-direction:column; gap:3px; min-width:0; }
+.lista-drop-body strong{
+  font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:0.03em;
+  font-size:1.1rem; color:var(--amarelo);
+}
+.lista-drop-body span{ font-size:0.9rem; line-height:1.55; color:rgba(245,243,231,0.85); }
+
 .formato-card{
   border:1px solid var(--linha);
   border-radius:6px;
