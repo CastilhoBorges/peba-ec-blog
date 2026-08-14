@@ -1,15 +1,22 @@
 const MEDALHAS = ["🥇", "🥈", "🥉"];
 
-function computeRanking() {
-  const totals = {};
-  POSTS.filter(p => p.type === "rodada").forEach(post => {
-    post.scorers.forEach(s => {
-      totals[s.name] = (totals[s.name] || 0) + s.goals;
-    });
-  });
-  return Object.entries(totals)
-    .map(([name, goals]) => ({ name, goals }))
-    .sort((a, b) => b.goals - a.goals);
+// periodo: null (total) | "2026-08" (mês) | "2026" (ano)
+// Filtra por prefixo de string ISO, nunca por Date: new Date("2026-08-01") é
+// parseado como UTC meia-noite e vira 31/jul 21h no horário de Brasília, o que
+// erraria o mês exatamente na virada — o momento mais crítico para a premiação.
+function computeRanking(periodo) {
+  const acc = {};
+  POSTS.filter(p => p.type === "rodada")
+       .filter(p => !periodo || p.date.startsWith(periodo))
+       .forEach(post => post.scorers.forEach(s => {
+         const e = acc[s.name] || (acc[s.name] = { name: s.name, goals: 0, rodadas: 0 });
+         e.goals += s.goals;
+         e.rodadas += 1;
+       }));
+  return Object.values(acc).sort((a, b) =>
+    b.goals - a.goals ||                        // mais gols primeiro
+    a.rodadas - b.rodadas ||                    // empate: marcou em menos rodadas
+    a.name.localeCompare(b.name, "pt-BR"));     // determinístico
 }
 
 function computeGoalkeepers() {
