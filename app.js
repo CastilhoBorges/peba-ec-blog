@@ -297,6 +297,21 @@ function periodoNavHtml(aba, periodo) {
     </div>`;
 }
 
+// Nomes cujo empate em gols foi desfeito pela contagem de rodadas.
+// Grupos empatados com a mesma contagem ficam de fora: ali a ordem é só alfabética
+// e mostrar o número não explicaria nada.
+function empatesDecididos(ranking) {
+  const grupos = {};
+  ranking.forEach(r => (grupos[r.goals] = grupos[r.goals] || []).push(r));
+
+  const marcados = new Set();
+  Object.values(grupos).forEach(grupo => {
+    const contagens = new Set(grupo.map(r => r.rodadas));
+    if (grupo.length > 1 && contagens.size > 1) grupo.forEach(r => marcados.add(r.name));
+  });
+  return marcados;
+}
+
 const TITULOS_ARTILHARIA = {
   mes: "Artilharia do mês",
   ano: "Artilharia do ano",
@@ -306,11 +321,14 @@ const TITULOS_ARTILHARIA = {
 function renderArtilharia(hash) {
   const { aba, periodo } = parseArtilharia(hash);
   const ranking = computeRanking(periodo);
+  const marcados = empatesDecididos(ranking);
 
   const rows = ranking.map((r, i) => `
     <li class="${i === 0 ? "top1" : ""}">
       <span class="pos">${MEDALHAS[i] || (i + 1)}</span>
-      <span class="name">${r.name}</span>
+      <span class="name">${r.name}${marcados.has(r.name)
+        ? `<span class="rodadas">${r.rodadas} ${r.rodadas === 1 ? "rodada" : "rodadas"}</span>`
+        : ""}</span>
       <span class="goals">${r.goals} ⚽</span>
     </li>`).join("");
 
@@ -328,6 +346,7 @@ function renderArtilharia(hash) {
         ${abasArtilhariaHtml(aba)}
         ${periodoNavHtml(aba, periodo)}
         ${ranking.length ? `<ul class="rank-full">${rows}</ul>` : `<p class="empty">${vazio}</p>`}
+        ${marcados.size ? `<p class="rank-nota">Empate em gols: fica na frente quem marcou em menos rodadas.</p>` : ""}
       </section>
     </div>`;
 }
