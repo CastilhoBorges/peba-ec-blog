@@ -277,6 +277,26 @@ function abasArtilhariaHtml(abaAtiva) {
   ).join("") + `</nav>`;
 }
 
+// Setas são links de hash para o router funcionar; na ponta do intervalo viram
+// <span> sem link. A aba Total não tem navegação nem rótulo de período.
+function periodoNavHtml(aba, periodo) {
+  if (aba === "total") return "";
+
+  const lista = aba === "mes" ? mesesDisponiveis() : anosDisponiveis();
+  const i = lista.indexOf(periodo);
+
+  const seta = (destino, simbolo, rotulo) => destino
+    ? `<a class="seta" href="#/artilharia/${aba}/${destino}" aria-label="${rotulo}">${simbolo}</a>`
+    : `<span class="seta off" aria-hidden="true">${simbolo}</span>`;
+
+  return `
+    <div class="periodo-nav">
+      ${seta(lista[i - 1], "‹", "Período anterior")}
+      <span class="periodo-label">${labelPeriodo(aba, periodo)}</span>
+      ${seta(lista[i + 1], "›", "Próximo período")}
+    </div>`;
+}
+
 const TITULOS_ARTILHARIA = {
   mes: "Artilharia do mês",
   ano: "Artilharia do ano",
@@ -306,6 +326,7 @@ function renderArtilharia(hash) {
       <section class="page-section">
         <h2>${TITULOS_ARTILHARIA[aba]}</h2>
         ${abasArtilhariaHtml(aba)}
+        ${periodoNavHtml(aba, periodo)}
         ${ranking.length ? `<ul class="rank-full">${rows}</ul>` : `<p class="empty">${vazio}</p>`}
       </section>
     </div>`;

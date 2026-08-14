@@ -414,6 +414,34 @@ ul.plain{
 }
 .rank-tabs a.active{ color:var(--color-ink); background:var(--color-gold); }
 
+/* ---------- artilharia: navegação de período ---------- */
+.periodo-nav{
+  display:flex; align-items:center; justify-content:center;
+  gap:14px; margin-bottom:18px;
+}
+.periodo-nav .periodo-label{
+  font-family:var(--font-display); font-size:11px; line-height:1.5;
+  letter-spacing:0; text-transform:uppercase; text-align:center;
+  color:var(--color-paper); min-width:10em;
+}
+.periodo-nav .seta{
+  font-family:var(--font-body); font-size:26px; line-height:1;
+  padding:2px 12px;
+  color:var(--color-ink); background:var(--color-gold);
+  border:3px solid var(--color-ink); box-shadow:var(--shadow-pixel);
+  transition:none;
+}
+.periodo-nav a.seta:hover{ background:var(--color-coin); }
+.periodo-nav a.seta:active{
+  transform:translate(3px,3px);
+  box-shadow:var(--shadow-pixel-pressed);
+}
+.periodo-nav .seta.off{
+  color:var(--color-muted);
+  background:var(--color-muted-surface);
+  box-shadow:none;
+}
+
 .empty{
   color:var(--color-ink); background:var(--color-paper);
   border:3px solid var(--color-ink); box-shadow:var(--shadow-pixel);
@@ -442,6 +470,8 @@ footer{
   .anuncio-row{ gap:12px; }
   .anuncio-thumb{ flex-basis:78px; width:78px; }
   .placar .num{ font-size:1.3rem; }
+  .periodo-nav{ gap:8px; }
+  .periodo-nav .periodo-label{ font-size:9px; min-width:8em; }
 }
 
 /* ---------- reduced motion ---------- */
