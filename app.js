@@ -1,4 +1,62 @@
 const MEDALHAS = ["🥇", "🥈", "🥉"];
+const MESES = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+               "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+// Nome com sufixo "posts" de propósito: não confundir com a propriedade `.rodadas`
+// do ranking, que é a contagem de rodadas em que o jogador marcou.
+function postsRodada() {
+  return POSTS.filter(p => p.type === "rodada");
+}
+
+// Date aqui é intencional: queremos o mês/ano do calendário local de hoje.
+function mesAtual() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function anoAtual() {
+  return String(new Date().getFullYear());
+}
+
+// Lista contínua "YYYY-MM" do mês mais antigo com rodada até o mês corrente.
+// Meses sem racha no meio do intervalo entram na lista e renderizam vazios.
+// mesAtual() entra no cálculo dos extremos para o período corrente sempre existir,
+// mesmo sem nenhuma rodada cadastrada.
+function mesesDisponiveis() {
+  const datas = [mesAtual(), ...postsRodada().map(p => p.date.slice(0, 7))];
+  const inicio = datas.reduce((a, b) => a < b ? a : b);
+  const fim = datas.reduce((a, b) => a > b ? a : b);
+
+  const lista = [];
+  let [ano, mes] = inicio.split("-").map(Number);
+  let atual = inicio;
+  while (atual <= fim) {
+    lista.push(atual);
+    mes += 1;
+    if (mes > 12) { mes = 1; ano += 1; }
+    atual = `${ano}-${String(mes).padStart(2, "0")}`;
+  }
+  return lista;
+}
+
+function anosDisponiveis() {
+  const anos = [anoAtual(), ...postsRodada().map(p => p.date.slice(0, 4))];
+  const inicio = Number(anos.reduce((a, b) => a < b ? a : b));
+  const fim = Number(anos.reduce((a, b) => a > b ? a : b));
+
+  const lista = [];
+  for (let a = inicio; a <= fim; a++) lista.push(String(a));
+  return lista;
+}
+
+function labelPeriodo(aba, periodo) {
+  if (aba === "mes") {
+    const [ano, mes] = periodo.split("-");
+    return `${MESES[Number(mes) - 1]} ${ano}`;
+  }
+  if (aba === "ano") return periodo;
+  return "";
+}
 
 // periodo: null (total) | "2026-08" (mês) | "2026" (ano)
 // Filtra por prefixo de string ISO, nunca por Date: new Date("2026-08-01") é
