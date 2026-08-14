@@ -393,6 +393,27 @@ ul.plain{
 .rank-full li.top1{ background:rgba(255,223,0,0.22); }
 .rank-full li.top1 .goals{ color:var(--color-ink); }
 
+/* ---------- artilharia: abas de recorte ---------- */
+.rank-tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.rank-tabs a{
+  font-family:var(--font-display);
+  font-size:9px;
+  letter-spacing:0;
+  text-transform:uppercase;
+  padding:9px 12px;
+  color:var(--color-paper);
+  background:var(--color-field-dark);
+  border:3px solid var(--color-ink);
+  box-shadow:var(--shadow-pixel);
+  transition:none;
+}
+.rank-tabs a:hover{ background:var(--color-ink); }
+.rank-tabs a:active{
+  transform:translate(3px,3px);
+  box-shadow:var(--shadow-pixel-pressed);
+}
+.rank-tabs a.active{ color:var(--color-ink); background:var(--color-gold); }
+
 .empty{
   color:var(--color-ink); background:var(--color-paper);
   border:3px solid var(--color-ink); box-shadow:var(--shadow-pixel);

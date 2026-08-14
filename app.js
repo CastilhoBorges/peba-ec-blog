@@ -248,8 +248,45 @@ function renderRegras() {
     </div>`;
 }
 
-function renderArtilharia() {
-  const ranking = computeRanking();
+// "/artilharia" | "/artilharia/mes/2026-08" | "/artilharia/ano/2026" | "/artilharia/total"
+// Período inexistente ou malformado cai no padrão: mês corrente.
+function parseArtilharia(hash) {
+  const partes = hash.split("/").filter(Boolean);   // ["artilharia", "mes", "2026-08"]
+  const aba = partes[1];
+  const periodo = partes[2];
+
+  if (aba === "total") return { aba: "total", periodo: null };
+  if (aba === "ano") {
+    return { aba: "ano", periodo: anosDisponiveis().includes(periodo) ? periodo : anoAtual() };
+  }
+  if (aba === "mes") {
+    return { aba: "mes", periodo: mesesDisponiveis().includes(periodo) ? periodo : mesAtual() };
+  }
+  return { aba: "mes", periodo: mesAtual() };
+}
+
+// Cada aba leva sempre ao período corrente do seu recorte, independente de onde se estava.
+function abasArtilhariaHtml(abaAtiva) {
+  const abas = [
+    { key: "mes", label: "Mês", href: `#/artilharia/mes/${mesAtual()}` },
+    { key: "ano", label: "Ano", href: `#/artilharia/ano/${anoAtual()}` },
+    { key: "total", label: "Total", href: "#/artilharia/total" }
+  ];
+  return `<nav class="rank-tabs">` + abas.map(a =>
+    `<a href="${a.href}" class="${a.key === abaAtiva ? "active" : ""}">${a.label}</a>`
+  ).join("") + `</nav>`;
+}
+
+const TITULOS_ARTILHARIA = {
+  mes: "Artilharia do mês",
+  ano: "Artilharia do ano",
+  total: "Artilharia geral"
+};
+
+function renderArtilharia(hash) {
+  const { aba, periodo } = parseArtilharia(hash);
+  const ranking = computeRanking(periodo);
+
   const rows = ranking.map((r, i) => `
     <li class="${i === 0 ? "top1" : ""}">
       <span class="pos">${MEDALHAS[i] || (i + 1)}</span>
@@ -257,14 +294,19 @@ function renderArtilharia() {
       <span class="goals">${r.goals} ⚽</span>
     </li>`).join("");
 
+  const vazio = aba === "total"
+    ? "Sem gols registrados ainda."
+    : `Sem gols registrados em ${labelPeriodo(aba, periodo)}.`;
+
   // Ranking de defesas dos goleiros temporariamente desativado.
   // Os dados (post.goalkeepers) e computeGoalkeepers() seguem no lugar —
   // para reativar, restaure a seção "Melhores goleiros (defesas)" aqui.
   return `
     <div class="wrap">
       <section class="page-section">
-        <h2>Artilharia geral</h2>
-        ${ranking.length ? `<ul class="rank-full">${rows}</ul>` : `<p class="empty">Sem gols registrados ainda.</p>`}
+        <h2>${TITULOS_ARTILHARIA[aba]}</h2>
+        ${abasArtilhariaHtml(aba)}
+        ${ranking.length ? `<ul class="rank-full">${rows}</ul>` : `<p class="empty">${vazio}</p>`}
       </section>
     </div>`;
 }
@@ -286,7 +328,7 @@ function router() {
   } else if (hash.startsWith("/regras")) {
     app.innerHTML = renderRegras();
   } else if (hash.startsWith("/artilharia")) {
-    app.innerHTML = renderArtilharia();
+    app.innerHTML = renderArtilharia(hash);
   } else {
     app.innerHTML = renderHome();
   }
