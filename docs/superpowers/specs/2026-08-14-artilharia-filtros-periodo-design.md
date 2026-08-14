@@ -117,16 +117,23 @@ período.
 │ 🥈 Michell                 7 ⚽  │
 │    3 rodadas                     │
 │ 🥉 Israel                  3 ⚽  │
+│  4 Jhon                    1 ⚽  │
+│  5 Tales                   1 ⚽  │
 │                                  │
 │ Empate em gols: fica na frente   │
 │ quem marcou em menos rodadas.    │
 └──────────────────────────────────┘
 ```
 
-- A linha `N rodadas` aparece **somente** nos jogadores empatados em gols com pelo menos
-  um outro jogador da mesma lista. Quem não está empatado não mostra nada.
-- A nota do critério de desempate aparece **somente** quando existe pelo menos um empate
-  na lista exibida, e apenas nas abas Mês e Ano.
+- A linha `N rodadas` aparece **somente** nos jogadores em que a contagem de rodadas
+  realmente decidiu a ordem: mesmo número de gols que outro jogador **e** contagens de
+  rodadas diferentes dentro do grupo empatado. Quando todos os empatados marcaram no
+  mesmo número de rodadas, a ordem caiu no alfabético e o número não explicaria nada —
+  então fica escondido. Com os dados de agosto/2026 isso marca 5 dos 19 jogadores; a
+  regra mais simples ("todo empatado mostra") marcaria 16, virando ruído.
+- A nota do critério de desempate aparece **somente** quando pelo menos um jogador está
+  marcado, em qualquer uma das três abas. O desempate vale igual nas três, e mostrar a
+  contagem sem explicação no Total seria pior do que não mostrar.
 - Rótulo do período: `"Agosto 2026"` (mês) via array fixo de nomes em português,
   `"2026"` (ano), nada no Total.
 - Lista vazia usa a classe `.empty` existente:
