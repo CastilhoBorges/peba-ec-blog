@@ -40,6 +40,30 @@ const POSTS = [
   },
   {
     type: "rodada",
+    slug: "rodada-15-08",
+    date: "2026-08-15",
+    dateLabel: "15 Ago 2026",
+    duration: null,
+    totalGoals: 23,
+    scorers: [
+      { name: "Isack", goals: 3 },
+      { name: "Andre Balada", goals: 3 },
+      { name: "Mikael", goals: 3 },
+      { name: "Michell", goals: 2 },
+      { name: "Samuel", goals: 2 },
+      { name: "Jhon", goals: 2 },
+      { name: "Anderson", goals: 2 },
+      { name: "Tonhão", goals: 1 },
+      { name: "Ryan", goals: 1 },
+      { name: "Gustavo Barbosa", goals: 1 },
+      { name: "Gabriel Jesus", goals: 1 },
+      { name: "Mileto", goals: 1 },
+      { name: "Hugo", goals: 1 }
+    ],
+    goalkeepers: []
+  },
+  {
+    type: "rodada",
     slug: "rodada-08-08",
     date: "2026-08-08",
     dateLabel: "08 Ago 2026",
