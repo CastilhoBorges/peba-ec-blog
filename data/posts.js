@@ -57,7 +57,7 @@ const POSTS = [
       { name: "Ryan", goals: 1 },
       { name: "Gustavo Barbosa", goals: 1 },
       { name: "Gabriel Jesus", goals: 1 },
-      { name: "Mileto", goals: 1 },
+      { name: "Tales", goals: 1 },
       { name: "Hugo", goals: 1 }
     ],
     goalkeepers: []
