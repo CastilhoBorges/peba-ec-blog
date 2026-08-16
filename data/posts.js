@@ -5,10 +5,10 @@
 const POSTS = [
   {
     type: "anuncio",
-    slug: "notinhas-do-racha",
+    slug: "notinhas-do-racha-01",
     date: "2026-08-16",
     dateLabel: "16 Ago 2026",
-    title: "Notinhas do racha: respeito em quadra e a próxima premiação",
+    title: "Notinhas do racha #1: respeito em quadra e a próxima premiação",
     icon: "📝",
     body: [
       "Bora de notinhas sobre o racha?",
