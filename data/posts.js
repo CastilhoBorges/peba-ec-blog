@@ -5,6 +5,21 @@
 const POSTS = [
   {
     type: "anuncio",
+    slug: "notinhas-do-racha",
+    date: "2026-08-16",
+    dateLabel: "16 Ago 2026",
+    title: "Notinhas do racha: respeito em quadra e a próxima premiação",
+    icon: "📝",
+    body: [
+      "Bora de notinhas sobre o racha?",
+      "1. Quero lembrar a essência do nosso racha: trazer pessoas de fora da nossa bolha para um ambiente repleto de amor. A competitividade faz parte — vamos nos estressar, vamos reclamar, isso é do esporte e não quero que acabe, porque é o que incentiva o irmão a melhorar.",
+      "Mas lembre que existe um limite: não xingue. Faça uma crítica pertinente, ajude o irmão a evoluir, não o exclua.",
+      "Lembre que você está em um time, e no time todo mundo é um só. Voltando ao que falei: se alguém está atrapalhando, lembre que não somos profissionais — estamos aqui para melhorar, competir e nos divertir. Excluir essa pessoa só vai fazer ela sair do racha, e a gente não quer ninguém saindo de casa por bobagem.",
+      "2. Sobre a premiação do artilheiro: galera, no momento a gente só consegue catalogar quem faz gol, mas, como falei antes, já estamos montando uma forma de premiar também quem joga bem sem colocar a bola na rede."
+    ]
+  },
+  {
+    type: "anuncio",
     slug: "nova-regra-faltas-prioridade",
     date: "2026-08-11",
     dateLabel: "11 Ago 2026",
