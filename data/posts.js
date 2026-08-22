@@ -16,7 +16,7 @@ const POSTS = [
       { name: "Anderson", goals: 3 },
       { name: "Hugo", goals: 3 },
       { name: "Tonhão", goals: 3 },
-      { name: "André", goals: 2 },
+      { name: "Andre Balada", goals: 2 },
       { name: "Guilherme", goals: 1 },
       { name: "Felipe Martins", goals: 1 },
       { name: "Israel", goals: 1 },
