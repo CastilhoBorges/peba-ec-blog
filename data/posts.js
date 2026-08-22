@@ -4,6 +4,27 @@
 
 const POSTS = [
   {
+    type: "rodada",
+    slug: "rodada-22-08",
+    date: "2026-08-22",
+    dateLabel: "22 Ago 2026",
+    duration: null,
+    totalGoals: 34,
+    scorers: [
+      { name: "Jhon", goals: 14 },
+      { name: "Mikael", goals: 5 },
+      { name: "Anderson", goals: 3 },
+      { name: "Hugo", goals: 3 },
+      { name: "Tonhão", goals: 3 },
+      { name: "André", goals: 2 },
+      { name: "Guilherme", goals: 1 },
+      { name: "Felipe Martins", goals: 1 },
+      { name: "Israel", goals: 1 },
+      { name: "João Pedro Ferreira", goals: 1 }
+    ],
+    goalkeepers: []
+  },
+  {
     type: "anuncio",
     slug: "notinhas-do-racha-01",
     date: "2026-08-16",
