@@ -1,8 +1,31 @@
 // Para adicionar uma nova rodada, copie um bloco "rodada" e preencha.
 // Para adicionar um anúncio/notícia, copie um bloco "anuncio".
+// "pinned: true" fixa o post no topo da home, acima de tudo, ignorando a data.
+// "cta" (opcional, só em anúncio) vira o botão de ação do post.
 // O ranking geral (página Artilharia) é somado automaticamente a partir daqui.
 
 const POSTS = [
+  {
+    type: "anuncio",
+    slug: "lista-agora-no-elenko",
+    date: "2026-08-23",
+    dateLabel: "23 Ago 2026",
+    pinned: true,
+    title: "A lista não sai mais no WhatsApp: agora é no Elenko",
+    icon: "📲",
+    body: [
+      "Aviso importante: a lista da semana <strong>não vai mais ser solta no grupo do WhatsApp</strong>. A partir de agora a organização do racha é toda pelo <strong>Elenko</strong>, um app feito pra isso.",
+      "O que muda na prática: a lista abre direto no app, você confirma sua vaga por lá e todo mundo vê quem está dentro, quem está na espera e quem já pagou — sem precisar rolar 200 mensagens pra achar o seu nome.",
+      "O que continua igual: dia, horário, valor e as regras do racha. Prazo de pagamento, lista de espera e a regra de quem falta sem avisar seguem valendo do mesmo jeito. O grupo do WhatsApp continua existindo pra resenha e recados — só a lista que sai de lá.",
+      "O que você precisa fazer agora: clicar no link abaixo, fazer seu cadastro e entrar direto no grupo do Peba Esporte Club no Elenko. Faz isso hoje, porque <strong>quem não estiver no app não entra na lista</strong> do próximo sábado.",
+      "Qualquer dúvida ou problema no cadastro, chama no grupo que a gente resolve. Nos vemos em quadra. ⚽"
+    ],
+    cta: {
+      label: "Entrar no grupo no Elenko",
+      href: "https://jogar.elenko.app/convite/ea77b186-9224-4766-a48f-3f3b4c36d85f",
+      nota: "Peba Esporte Club no Elenko — entra aí pra confirmar sua vaga."
+    }
+  },
   {
     type: "rodada",
     slug: "rodada-22-08",

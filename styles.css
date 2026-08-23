@@ -181,6 +181,43 @@ main{ padding:32px 0 70px; }
 .card p{ margin:0 0 10px; line-height:1.35; color:var(--color-ink); font-size:19px; }
 .card p:last-child{ margin-bottom:0; }
 
+/* ---------- post fixado ---------- */
+/* Faixa dourada sobre a borda de tinta, para o card fixado saltar no feed. */
+.card.pinned::before{
+  content:"";
+  position:absolute;
+  top:-4px; left:-4px; right:-4px;
+  height:6px;
+  background:var(--color-gold);
+}
+
+.pin-badge{
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:var(--font-display);
+  font-size:8px; text-transform:uppercase; letter-spacing:0;
+  color:var(--color-ink);
+  background:var(--color-gold);
+  border:2px solid var(--color-ink);
+  padding:4px 6px;
+}
+
+/* ---------- botão de ação do anúncio ---------- */
+.cta-box{ margin-top:18px; }
+.cta-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  font-family:var(--font-display);
+  font-size:10px; line-height:1.6; text-transform:uppercase; letter-spacing:0;
+  text-align:center;
+  color:var(--color-ink);
+  background:var(--color-gold);
+  border:3px solid var(--color-ink);
+  box-shadow:var(--shadow-pixel);
+  padding:13px 16px;
+}
+.cta-btn:hover{ transform:translate(-1px,-1px); box-shadow:5px 5px 0 var(--color-ink); }
+.cta-btn:active{ transform:translate(3px,3px); box-shadow:var(--shadow-pixel-pressed); }
+.cta-box .mini-note{ margin-top:10px; }
+
 /* ---------- capa de anúncio ---------- */
 .anuncio-row{ display:flex; align-items:flex-start; gap:16px; }
 .anuncio-row .anuncio-text{ flex:1; min-width:0; }
@@ -350,8 +387,12 @@ main{ padding:32px 0 70px; }
 .regra-itens.letras li::before{ content:none; }
 .regra-itens.letras li::marker{ font-family:var(--font-body); color:var(--color-coin); font-size:19px; }
 .regra strong{ color:var(--color-coin); font-weight:700; }
-.regra a{ color:var(--color-link); border-bottom:2px solid var(--color-link); }
-.regra a:hover{ background:rgba(27,63,160,0.1); }
+.regra a,
+.lista-drop-body a,
+.card p a{ color:var(--color-link); border-bottom:2px solid var(--color-link); }
+.regra a:hover,
+.lista-drop-body a:hover,
+.card p a:hover{ background:rgba(27,63,160,0.1); }
 .regra-nota{
   margin:14px 0 0; padding-top:12px;
   border-top:2px dashed rgba(11,61,19,0.3);
@@ -479,6 +520,7 @@ footer{
   .regra{ padding:16px; }
   .anuncio-row{ gap:12px; }
   .anuncio-thumb{ flex-basis:78px; width:78px; }
+  .cta-btn{ display:flex; width:100%; }
   .placar .num{ font-size:1.3rem; }
   .periodo-nav{ gap:8px; }
   .periodo-nav .periodo-label{ font-size:9px; min-width:8em; }

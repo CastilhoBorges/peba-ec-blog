@@ -1,8 +1,8 @@
 const REGRAS = {
-  // Quando a lista da semana é solta no grupo. Vira um label destacado no topo da página Regras.
+  // Quando a lista da semana abre no Elenko. Vira um label destacado no topo da página Regras.
   listaSemanal: {
     quando: "Toda segunda, 12h",
-    nota: "A lista da semana é solta no grupo nesse horário. Fique atento pra garantir sua vaga."
+    nota: 'A lista da semana abre no <a href="https://jogar.elenko.app/convite/ea77b186-9224-4766-a48f-3f3b4c36d85f" target="_blank" rel="noopener">Elenko</a> nesse horário — não sai mais no WhatsApp. Fique atento pra garantir sua vaga.'
   },
   formatos: [
     {
@@ -101,7 +101,7 @@ const REGRAS = {
     }
   ],
   sorteio: [
-    "Os times são sorteados a partir da lista da semana no grupo.",
+    "Os times são sorteados a partir da lista da semana no Elenko.",
     "Cada jogador tem um nível (estrelas) usado para equilibrar os times no sorteio.",
     "O sorteio pode ser feito no site do sorteador, direto pelo celular, antes do jogo."
   ]

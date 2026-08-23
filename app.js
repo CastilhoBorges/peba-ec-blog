@@ -122,6 +122,24 @@ function coverImgHtml(cover) {
     </picture>`;
 }
 
+// Selo do post fixado, mostrado antes do resto do eyebrow.
+function pinBadgeHtml(post) {
+  return post.pinned ? `<span class="pin-badge">📌 Fixado</span>` : "";
+}
+
+// Botão de ação do anúncio (link externo). Dentro de um card clicável o clique
+// não pode subir para o onclick do <article>, senão o hash troca junto com a
+// navegação para o link.
+function ctaHtml(cta, inClickableCard) {
+  if (!cta) return "";
+  return `
+    <div class="cta-box">
+      <a class="cta-btn" href="${cta.href}" target="_blank" rel="noopener"
+         ${inClickableCard ? `onclick="event.stopPropagation()"` : ""}>${cta.label}</a>
+      ${cta.nota ? `<p class="mini-note">${cta.nota}</p>` : ""}
+    </div>`;
+}
+
 function anuncioCardHtml(post, clickable) {
   const preview = post.body[0];
   const texto = `
@@ -131,17 +149,21 @@ function anuncioCardHtml(post, clickable) {
     </div>`;
 
   return `
-  <article class="card ${clickable ? "clickable" : ""}" ${clickable ? `onclick="location.hash='#/post/${post.slug}'"` : ""}>
-    <div class="eyebrow">${post.icon || "📣"} Anúncio <span class="sep">·</span> ${post.dateLabel}</div>
+  <article class="card ${clickable ? "clickable" : ""} ${post.pinned ? "pinned" : ""}" ${clickable ? `onclick="location.hash='#/post/${post.slug}'"` : ""}>
+    <div class="eyebrow">${pinBadgeHtml(post)}${post.icon || "📣"} Anúncio <span class="sep">·</span> ${post.dateLabel}</div>
     <h2>${post.title}</h2>
     ${post.cover
       ? `<div class="anuncio-row"><div class="anuncio-thumb">${coverImgHtml(post.cover)}</div>${texto}</div>`
       : texto}
+    ${ctaHtml(post.cta, clickable)}
   </article>`;
 }
 
 function renderHome() {
-  const sorted = [...POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
+  // Fixados primeiro (na ordem em que aparecem em posts.js); o resto por data desc.
+  const sorted = [...POSTS].sort((a, b) =>
+    (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
+    new Date(b.date) - new Date(a.date));
   const cards = sorted.map(p => p.type === "rodada" ? rodadaCardHtml(p, true) : anuncioCardHtml(p, true)).join("");
   return `
     <div class="wrap">
@@ -169,11 +191,12 @@ function renderPost(slug) {
     `;
   } else {
     body = `
-      <article class="card">
-        <div class="eyebrow">${post.icon || "📣"} Anúncio <span class="sep">·</span> ${post.dateLabel}</div>
+      <article class="card ${post.pinned ? "pinned" : ""}">
+        <div class="eyebrow">${pinBadgeHtml(post)}${post.icon || "📣"} Anúncio <span class="sep">·</span> ${post.dateLabel}</div>
         <h2>${post.title}</h2>
         ${post.cover ? `<figure class="post-capa">${coverImgHtml(post.cover)}</figure>` : ""}
         ${post.body.map(p => `<p>${p}</p>`).join("")}
+        ${ctaHtml(post.cta, false)}
       </article>`;
   }
 
