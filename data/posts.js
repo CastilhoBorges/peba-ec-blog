@@ -10,12 +10,12 @@ const POSTS = [
     slug: "pagamento-100-porcento-app",
     date: "2026-09-08",
     dateLabel: "08 Set 2026",
-    title: "Pagamento do racha agora é 100% pelo app",
+    title: "Pagamento do racha agora é 100% pelo Elenko",
     icon: "💳",
     body: [
       "Fala galera, boa tarde!",
-      "Avisando que agora o pagamento do nosso racha vai ser <strong>100% pelo nosso app</strong>, seja no Pix ou no cartão.",
-      "Temos algumas taxinhas cobradas pelo sistema financeiro e uma do app para ajudar a manter o projeto no ar:<br>📱 <strong>PIX:</strong> valor do racha + R$ 0,50 (Gateway) + R$ 0,99 (App)<br>💳 <strong>CARTÃO:</strong> valor do racha + R$ 0,50 (Gateway) + 4,33% (Cartão) + R$ 0,99 (App)",
+      "Avisando que agora o pagamento do nosso racha vai ser <strong>100% pelo Elenko</strong>, o app onde já está a nossa lista, seja no Pix ou no cartão.",
+      "Temos algumas taxinhas cobradas pelo sistema financeiro e uma do Elenko para ajudar a manter o app no ar:<br>📱 <strong>PIX:</strong> valor do racha + R$ 0,50 (Gateway) + R$ 0,99 (Elenko)<br>💳 <strong>CARTÃO:</strong> valor do racha + R$ 0,50 (Gateway) + 4,33% (Cartão) + R$ 0,99 (Elenko)",
       "Como o cartão de crédito tem a taxa da própria operadora, ele fica um pouco mais caro. O cartão de débito nós nem focamos, já que o Pix cumpre a mesma função e é mais barato para todo mundo.",
       "⚽ Exemplo com o nosso racha a R$ 15,00:<br>Total no PIX: <strong>R$ 16,49</strong><br>Total no CARTÃO: <strong>R$ 17,14</strong>"
     ]
